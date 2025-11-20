@@ -1,0 +1,21 @@
+Signature Verification Summary
+
+Bob decrypted the file signed_message.asc using his private key. During the
+decrypt/verify operation, GPG confirmed the validity of Alice’s digital
+signature.
+
+Kleopatra displayed the message:
+
+    "Valid signature by alice@example.com"
+
+This verifies the following:
+
+1. The message was signed using Alice’s private key.
+2. The signature matches Alice’s public key (public.asc), proving Alice is the sender.
+3. The message has not been modified after signing (integrity is guaranteed).
+4. Only Bob was able to decrypt the file using his private key, ensuring confidentiality.
+
+The operation demonstrates:
+- Authentication (only Alice could create the signature)
+- Integrity (message unchanged)
+- Confidentiality (encrypted only for Bob)

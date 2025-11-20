@@ -1,0 +1,78 @@
+TLS Inspection Summary
+Target Site:
+  facebook.com:443
+
+------------------------------------------------------------
+1. Certificate Chain (Root → Intermediate → Leaf)
+------------------------------------------------------------
+
+Root CA:
+  DigiCert Global Root G2
+  (C=US, O=DigiCert Inc, OU=www.digicert.com, CN=DigiCert Global Root G2)
+
+Intermediate CA:
+  DigiCert Global G2 TLS RSA SHA256 2020 CA1
+  (C=US, O=DigiCert Inc, CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1)
+
+Leaf (Server Certificate):
+  *.facebook.com
+  (C=US, ST=California, L=Menlo Park, O=Meta Platforms, Inc., CN=*.facebook.com)
+
+Note:
+  The certificate information shown above is retrieved from `openssl s_client`,
+  because Facebook uses TLS 1.3 encrypted handshake, which prevents the certificate
+  from being visible in Wireshark.
+
+------------------------------------------------------------
+2. TLS Version Negotiated
+------------------------------------------------------------
+
+From the Server Hello:
+  TLS Version: TLSv1.3
+
+------------------------------------------------------------
+3. Cipher Suite Used
+------------------------------------------------------------
+
+From the Server Hello:
+  Cipher Suite: TLS_CHACHA20_POLY1305_SHA256
+
+------------------------------------------------------------
+4. Wireshark Handshake Observation
+------------------------------------------------------------
+
+Observed handshake messages:
+  - Client Hello (SNI = static.xx.fbcdn.net)
+  - Server Hello
+  - Change Cipher Spec (compatibility message)
+  - Encrypted Handshake (Application Data)
+
+Explanation:
+  The Client Hello clearly identifies the target domain via SNI.
+  The Server Hello confirms the negotiated TLS version (TLS 1.3)
+  and selected cipher suite.
+
+------------------------------------------------------------
+5. Why Certificate Does Not Appear in Wireshark
+------------------------------------------------------------
+
+In TLS 1.3, all handshake messages after the Server Hello are encrypted,
+including:
+
+  - Certificate
+  - CertificateVerify
+  - Finished
+
+Because of this, the server certificate does not appear in plaintext
+in Wireshark. This behavior is expected and indicates a modern, secure
+TLS 1.3 configuration used by Facebook and other large providers.
+
+------------------------------------------------------------
+6. Summary
+------------------------------------------------------------
+
+The TLS capture successfully shows the initial handshake negotiation
+(Client Hello and Server Hello) with facebook.com. TLS 1.3 is used
+with the modern cipher suite TLS_CHACHA20_POLY1305_SHA256.
+The Certificate message is encrypted by design in TLS 1.3, demonstrating
+that the server implements secure TLS 1.3 handshake practices.

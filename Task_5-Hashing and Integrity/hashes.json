@@ -1,0 +1,14 @@
+{
+    "original_file": "original.txt",
+    "tampered_file": "tampered.txt",
+    "original_hashes": {
+        "sha256": "c9a8d8dd81ed9b4ce6baf87c1721a1a370c10c6c43b03d4d134b58aaa2418374",
+        "sha1": "9524060f1551da2fa50c1460715fe27b330368eb",
+        "md5": "edf5f0b09c63f95720991b1919114f4e"
+    },
+    "tampered_hashes": {
+        "sha256": "e4f37082dffc1d4acda71d05243d9f8475af4a3de9add79c94655d131e84ac26",
+        "sha1": "52161ed90581047d0a1b4f64bf7d30f216940edf",
+        "md5": "6d236c70d3a5dac6178f7ab73d0d540c"
+    }
+}

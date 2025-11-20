@@ -1,0 +1,2 @@
+This is the original file used for the hashing and integrity check.
+THIS LINE WAS ADDED TO SIMULATE TAMPERING.
